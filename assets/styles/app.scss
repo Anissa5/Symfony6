@@ -1,4 +1,10 @@
+// Couleurs de ton styleguide
+$primary: #080F1A;
+$secondary: #E50914;
+
+// Bootstrap après les variables pour appliquer tes couleurs
+@import "bootstrap/scss/bootstrap";
+
 body {
     background-color: white;
 }
-
