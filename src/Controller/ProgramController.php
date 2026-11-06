@@ -23,7 +23,7 @@ class ProgramController extends AbstractController
     #[Route('/{id}', name: 'show', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function show(int $id, ProgramRepository $programRepository): Response
     {
-        $program = $programRepository->findOneBy(['id' => $id]);
+        $program = $programRepository->findOneById($id);
 
         if ($program === null) {
             throw $this->createNotFoundException('Série introuvable.');
