@@ -1,7 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Program {{ id }}{% endblock %}
+{% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
-    <h1>Program {{ id }}</h1>
+    <h1>{{ program.title }}</h1>
+
+    <p>{{ program.summary }}</p>
+
+    <p>Catégorie : {{ program.category.name }}</p>
+
+    <a href="{{ path('program_index') }}">
+        Retour à la liste des séries
+    </a>
 {% endblock %}
