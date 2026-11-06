@@ -1,13 +1,28 @@
-{% block title %}{{ program.title }}{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Série #{{ program.id }}{% endblock %}
 
 {% block body %}
-    <h1>{{ program.title }}</h1>
+    <div class="d-flex align-items-start gap-3">
+        {% if program.poster %}
+            <img
+                src="{{ program.poster }}"
+                alt="Affiche de {{ program.title }}"
+                class="img-fluid"
+                style="max-width: 200px;"
+            >
+        {% endif %}
 
-    <p>{{ program.summary }}</p>
+        <div>
+            <h1>{{ program.title }}</h1>
 
-    <p>Catégorie : {{ program.category.name }}</p>
+            <p>{{ program.summary }}</p>
+
+            <p>Catégorie : {{ program.category.name }}</p>
+        </div>
+    </div>
 
     <a href="{{ path('program_index') }}">
-        Retour à la liste des séries
+        Retour à la liste des programmes
     </a>
 {% endblock %}
