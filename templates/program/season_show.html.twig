@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ program.title }} — Saison {{ season.number }}
+{% endblock %}
+
+{% block body %}
+    <div class="container my-4">
+        <h1>{{ program.title }}</h1>
+
+        <h2>Saison {{ season.number }} — {{ season.year }}</h2>
+
+        <p>{{ season.description }}</p>
+
+        <h3>Épisodes</h3>
+
+        {% for episode in season.episodes|sort((a, b) => a.number <=> b.number) %}
+            <article class="mb-4">
+                <h4>
+                    Épisode {{ episode.number }} : {{ episode.title }}
+                </h4>
+
+                <p>{{ episode.synopsis }}</p>
+            </article>
+        {% else %}
+            <p>Aucun épisode pour cette saison.</p>
+        {% endfor %}
+
+        <a href="{{ path('program_show', {id: program.id}) }}">
+            Retour à la série
+        </a>
+    </div>
+{% endblock %}
