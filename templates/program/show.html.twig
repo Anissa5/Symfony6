@@ -4,19 +4,19 @@
 
 {% block body %}
     <div class="d-flex align-items-start gap-3">
-        {% if program.poster %}
+        {% if program.image %}
             <img
-                src="{{ program.poster }}"
-                alt="Affiche de {{ program.title }}"
+                src="{{ program.image }}"
+                alt="Affiche de {{ program.name }}"
                 class="img-fluid"
                 style="max-width: 200px;"
             >
         {% endif %}
 
         <div>
-            <h1>{{ program.title }}</h1>
+            <h1>{{ program.name }}</h1>
 
-            <p>{{ program.summary }}</p>
+            <p>{{ program.description }}</p>
 
             <p>Catégorie : {{ program.category.name }}</p>
         </div>

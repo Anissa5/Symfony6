@@ -22,10 +22,10 @@ class Episode
     private ?int $number = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $synopsis = null;
+    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -56,26 +56,26 @@ class Episode
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getName(): ?string
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(string $title): static
+    public function setName(string $name): static
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getSynopsis(): ?string
+    public function getDescription(): ?string
     {
-        return $this->synopsis;
+        return $this->description;
     }
 
-    public function setSynopsis(string $synopsis): static
+    public function setDescription(string $description): static
     {
-        $this->synopsis = $synopsis;
+        $this->description = $description;
 
         return $this;
     }

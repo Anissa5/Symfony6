@@ -8,11 +8,11 @@
     {% for program in programs %}
         <div>
             <h2>
-                {{ loop.index }} / {{ program.title }}
+                {{ loop.index }} / {{ program.name }}
                 - Catégorie : {{ program.category.name }}
             </h2>
 
-            <p>{{ program.summary }}</p>
+            <p>{{ program.description }}</p>
 
             <a href="{{ path('program_show', { id: program.id }) }}">
                 Voir la fiche
