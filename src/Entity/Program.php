@@ -17,13 +17,16 @@ class Program
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $summary = null;
+    private ?string $description = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $poster = null;
+    #[ORM\Column(length: 500, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\Column(name: 'nb_seasons')]
+    private int $nbSeasons = 0;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'programs')]
     #[ORM\JoinColumn(nullable: false)]
@@ -45,38 +48,38 @@ class Program
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getName(): ?string
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(string $title): static
+    public function setName(string $name): static
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getSummary(): ?string
+    public function getDescription(): ?string
     {
-        return $this->summary;
+        return $this->description;
     }
 
-    public function setSummary(string $summary): static
+    public function setDescription(string $description): static
     {
-        $this->summary = $summary;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getPoster(): ?string
+    public function getImage(): ?string
     {
-        return $this->poster;
+        return $this->image;
     }
 
-    public function setPoster(?string $poster): static
+    public function setImage(?string $image): static
     {
-        $this->poster = $poster;
+        $this->image = $image;
 
         return $this;
     }
@@ -119,6 +122,18 @@ class Program
                 $season->setProgram(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNbSeasons(): int
+    {
+        return $this->nbSeasons;
+    }
+
+    public function setNbSeasons(int $nbSeasons): static
+    {
+        $this->nbSeasons = $nbSeasons;
 
         return $this;
     }
