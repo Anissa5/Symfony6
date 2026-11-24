@@ -10,6 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Episode;
+use App\Form\ProgramType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/program', name: 'program_')]
 class ProgramController extends AbstractController
@@ -23,6 +26,25 @@ class ProgramController extends AbstractController
             'programs' => $programs,
         ]);
     }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+        public function new(Request $request, EntityManagerInterface $entityManager): Response
+        {
+            $program = new Program();
+            $form = $this->createForm(ProgramType::class, $program);
+            $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $entityManager->persist($program);
+                    $entityManager->flush();
+
+                    return $this->redirectToRoute('program_index');
+                }
+
+            return $this->render('program/new.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
 
     #[Route(
         '/{id}',
